@@ -4,8 +4,9 @@ def git_scm(urls,branch) {
 		git branch: "${branch}", url: "${urls}"
 	}
 }
-def build() {
+def build(path) {
         node("master") {
-                sh "mvn clean package"
+		sh "cd ${path}"
+                sh "mvn clean package -DskipTests"
         }
 }
